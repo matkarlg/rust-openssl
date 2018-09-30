@@ -246,6 +246,12 @@ ssbzSibBsu/6iGtCOGEoXJf//////////wIBAg==
         Ok(SslAcceptorBuilder(ctx))
     }
 
+    /// Creates a new builder where you have to set cipher, curves and additional options yourself.
+    pub fn insecure(method: SslMethod) -> Result<SslAcceptorBuilder, ErrorStack> {
+        let ctx = ctx(method)?;
+        Ok(SslAcceptorBuilder(ctx))
+    }
+
     /// Initiates a server-side TLS session on a stream.
     pub fn accept<S>(&self, stream: S) -> Result<SslStream<S>, HandshakeError<S>>
     where
